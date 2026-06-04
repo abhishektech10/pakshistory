@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isabeve Korkama — Singer & Sketch Artist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav id="navbar">
+    <div class="nav-logo">IK</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#personal">Profile</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-portrait">
+      <div class="portrait-ring"></div>
+      <div class="portrait-placeholder">
+        <i class="fas fa-user"></i>
+        <span>Isabeve Korkama</span>
+      </div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow animate-up delay-1">Kazakhstan's Creative Soul</p>
+      <h1 class="hero-title animate-up delay-2">Isabeve<br /><span>Korkama</span></h1>
+      <p class="hero-roles animate-up delay-3">
+        <span class="role-badge">Singer</span>
+        <span class="role-sep">•</span>
+        <span class="role-badge">Sketch Artist</span>
+        <span class="role-sep">•</span>
+        <span class="role-badge">Creative Soul</span>
+      </p>
+      <p class="hero-intro animate-up delay-4">
+        Welcome to my personal space where music, art, and creativity come together.<br />
+        Explore my musical journey, artwork, and personal story.
+      </p>
+      <div class="hero-cta animate-up delay-5">
+        <a href="#music" class="btn btn-primary"><i class="fas fa-headphones"></i> Listen to My Music</a>
+        <a href="#gallery" class="btn btn-outline"><i class="fas fa-palette"></i> View Gallery</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">A Story of <span>Art & Sound</span></h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-lead">
+            I'm Isabeve Korkama — a senior student from the vibrant land of Kazakhstan, living at the intersection of music and visual art.
+          </p>
+          <p>
+            My journey began with a sketchpad and a melody humming in my head. Over the years, I've discovered that both art forms speak the same language — they make people feel something real. Whether I'm covering a song that moves me or drawing a portrait that captures emotion, my goal is always the same: to create something that resonates.
+          </p>
+          <p>
+            As a passionate singer, I love interpreting cover songs and weaving my own personality into every note. As a sketch artist, I find stillness and depth in pencil strokes and shading. Together, these two worlds form the complete expression of who I am.
+          </p>
+          <div class="about-signature">— Isabeve Korkama</div>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon"><i class="fas fa-microphone-alt"></i></div>
+            <h3>Singer</h3>
+            <p>Passionate performer who brings cover songs to life with emotion, personality, and vocal storytelling.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon"><i class="fas fa-pencil-alt"></i></div>
+            <h3>Sketch Artist</h3>
+            <p>Skilled in detailed pencil art and portrait sketching — transforming ideas into visual expressions.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon"><i class="fas fa-heart"></i></div>
+            <h3>Creative Soul</h3>
+            <p>Believes in the power of combining art and music to inspire, connect, and tell authentic stories.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Senior Student</h3>
+            <p>Balancing academics with artistry — proving that creativity and dedication can thrive together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MUSIC ===================== -->
+  <section id="music">
+    <div class="container">
+      <div class="section-label">Music</div>
+      <h2 class="section-title">My Music <span>Journey</span></h2>
+      <p class="section-sub">A collection of songs that tell my story — from heartfelt covers to personal expressions.</p>
+
+      <div class="music-categories">
+        <button class="music-cat active" data-cat="all">All</button>
+        <button class="music-cat" data-cat="covers">Cover Songs</button>
+        <button class="music-cat" data-cat="originals">Original Songs</button>
+        <button class="music-cat" data-cat="live">Live Performances</button>
+      </div>
+
+      <!-- Featured Player -->
+      <div class="featured-player">
+        <div class="fp-art">
+          <div class="fp-art-placeholder"><i class="fas fa-music"></i></div>
+          <div class="fp-vinyl"></div>
+        </div>
+        <div class="fp-info">
+          <span class="fp-tag">Featured</span>
+          <h3 class="fp-title">Echoes of Home</h3>
+          <p class="fp-artist">Isabeve Korkama</p>
+          <div class="fp-player">
+            <div class="fp-progress-bar">
+              <div class="fp-progress" id="fpProgress"></div>
+            </div>
+            <div class="fp-time">
+              <span id="fpCurrent">0:00</span>
+              <span id="fpTotal">3:42</span>
+            </div>
+            <div class="fp-controls">
+              <button class="fp-btn" id="fpPrev"><i class="fas fa-backward"></i></button>
+              <button class="fp-btn fp-play" id="fpPlay"><i class="fas fa-play" id="fpPlayIcon"></i></button>
+              <button class="fp-btn" id="fpNext"><i class="fas fa-forward"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Music Cards -->
+      <div class="music-grid">
+        <div class="music-card" data-cat="covers">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>Shallow (Cover)</h4>
+            <p>Lady Gaga & Bradley Cooper</p>
+            <span class="mc-tag">Cover</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="music-card" data-cat="covers">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>Someone Like You (Cover)</h4>
+            <p>Adele</p>
+            <span class="mc-tag">Cover</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="music-card" data-cat="originals">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>Echoes of Home</h4>
+            <p>Original Song</p>
+            <span class="mc-tag">Original</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="music-card" data-cat="live">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>School Showcase 2024</h4>
+            <p>Live Performance</p>
+            <span class="mc-tag">Live</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="music-card" data-cat="covers">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>Drivers License (Cover)</h4>
+            <p>Olivia Rodrigo</p>
+            <span class="mc-tag">Cover</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="music-card" data-cat="originals">
+          <div class="mc-art"><i class="fas fa-music"></i></div>
+          <div class="mc-info">
+            <h4>Steppe Nights</h4>
+            <p>Original Song</p>
+            <span class="mc-tag">Original</span>
+          </div>
+          <button class="mc-play"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-label">Artwork</div>
+      <h2 class="section-title">Art & Sketch <span>Gallery</span></h2>
+      <p class="section-sub">Each piece is a quiet moment made visible — pencil, emotion, and patience.</p>
+
+      <div class="gallery-cats">
+        <button class="g-cat active" data-gcat="all">All</button>
+        <button class="g-cat" data-gcat="portrait">Portrait Sketches</button>
+        <button class="g-cat" data-gcat="pencil">Pencil Art</button>
+        <button class="g-cat" data-gcat="creative">Creative Drawings</button>
+        <button class="g-cat" data-gcat="personal">Personal Artwork</button>
+      </div>
+
+      <div class="masonry-gallery" id="galleryGrid">
+        <div class="gallery-item tall" data-gcat="portrait">
+          <div class="gi-placeholder"><i class="fas fa-user-circle"></i><span>Portrait Study I</span></div>
+          <div class="gi-overlay"><span>Portrait Study I</span><small>Portrait Sketches</small></div>
+        </div>
+        <div class="gallery-item" data-gcat="pencil">
+          <div class="gi-placeholder"><i class="fas fa-pencil-alt"></i><span>Pencil Art II</span></div>
+          <div class="gi-overlay"><span>Pencil Art II</span><small>Pencil Art</small></div>
+        </div>
+        <div class="gallery-item" data-gcat="creative">
+          <div class="gi-placeholder"><i class="fas fa-paint-brush"></i><span>Creative Piece</span></div>
+          <div class="gi-overlay"><span>Creative Piece</span><small>Creative Drawings</small></div>
+        </div>
+        <div class="gallery-item wide" data-gcat="personal">
+          <div class="gi-placeholder"><i class="fas fa-heart"></i><span>My World</span></div>
+          <div class="gi-overlay"><span>My World</span><small>Personal Artwork</small></div>
+        </div>
+        <div class="gallery-item tall" data-gcat="portrait">
+          <div class="gi-placeholder"><i class="fas fa-user-circle"></i><span>Portrait Study II</span></div>
+          <div class="gi-overlay"><span>Portrait Study II</span><small>Portrait Sketches</small></div>
+        </div>
+        <div class="gallery-item" data-gcat="pencil">
+          <div class="gi-placeholder"><i class="fas fa-pencil-alt"></i><span>Line & Shadow</span></div>
+          <div class="gi-overlay"><span>Line & Shadow</span><small>Pencil Art</small></div>
+        </div>
+        <div class="gallery-item" data-gcat="creative">
+          <div class="gi-placeholder"><i class="fas fa-star"></i><span>Dreamscape</span></div>
+          <div class="gi-overlay"><span>Dreamscape</span><small>Creative Drawings</small></div>
+        </div>
+        <div class="gallery-item" data-gcat="personal">
+          <div class="gi-placeholder"><i class="fas fa-music"></i><span>Music & Me</span></div>
+          <div class="gi-overlay"><span>Music & Me</span><small>Personal Artwork</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-close" id="lbClose"><i class="fas fa-times"></i></button>
+      <div class="lb-content" id="lbContent"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PERSONAL PROFILE ===================== -->
+  <section id="personal">
+    <div class="container">
+      <div class="section-label">Profile</div>
+      <h2 class="section-title">Personal <span>Information</span></h2>
+      <div class="profile-wrapper">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-img"><i class="fas fa-user"></i></div>
+          </div>
+          <h3 class="profile-name">Isabeve Korkama</h3>
+          <p class="profile-title">Singer & Sketch Artist</p>
+          <div class="profile-flag">🇰🇿 Kazakhstan</div>
+        </div>
+        <div class="profile-details">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-user"></i></div>
+              <div class="detail-body">
+                <span class="detail-label">Full Name</span>
+                <span class="detail-value">Isabeve Korkama</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-globe"></i></div>
+              <div class="detail-body">
+                <span class="detail-label">Country</span>
+                <span class="detail-value">Kazakhstan</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-star"></i></div>
+              <div class="detail-body">
+                <span class="detail-label">Profession</span>
+                <span class="detail-value">Singer & Sketch Artist</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="detail-body">
+                <span class="detail-label">Education</span>
+                <span class="detail-value">Senior Student</span>
+              </div>
+            </div>
+          </div>
+          <div class="interests-section">
+            <h4>Interests & Passions</h4>
+            <div class="interest-tags">
+              <span><i class="fas fa-music"></i> Music</span>
+              <span><i class="fas fa-pencil-alt"></i> Sketching</span>
+              <span><i class="fas fa-lightbulb"></i> Creativity</span>
+              <span><i class="fas fa-theater-masks"></i> Performing Arts</span>
+              <span><i class="fas fa-palette"></i> Visual Art</span>
+              <span><i class="fas fa-headphones"></i> Songwriting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACHIEVEMENTS ===================== -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-label">Milestones</div>
+      <h2 class="section-title">Achievements & <span>Highlights</span></h2>
+      <p class="section-sub">Every performance, every sketch — a step forward in the creative journey.</p>
+
+      <div class="timeline">
+        <div class="tl-item left">
+          <div class="tl-dot"><i class="fas fa-microphone"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2024</span>
+            <h4>School Annual Showcase</h4>
+            <p>Performed live in front of 500+ students and faculty — receiving a standing ovation for her vocal performance.</p>
+          </div>
+        </div>
+        <div class="tl-item right">
+          <div class="tl-dot"><i class="fas fa-pencil-alt"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2024</span>
+            <h4>Student Art Exhibition</h4>
+            <p>Selected as a featured artist in the school's annual art exhibition, showcasing 5 original portrait sketches.</p>
+          </div>
+        </div>
+        <div class="tl-item left">
+          <div class="tl-dot"><i class="fas fa-music"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2023</span>
+            <h4>First Original Song</h4>
+            <p>Released "Echoes of Home" — her first original song, blending Kazakh inspiration with contemporary pop sounds.</p>
+          </div>
+        </div>
+        <div class="tl-item right">
+          <div class="tl-dot"><i class="fas fa-trophy"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2023</span>
+            <h4>Regional Talent Competition</h4>
+            <p>Top 5 finalist in a regional talent competition, recognized for exceptional vocal ability and stage presence.</p>
+          </div>
+        </div>
+        <div class="tl-item left">
+          <div class="tl-dot"><i class="fas fa-heart"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2022</span>
+            <h4>Art Meets Music Project</h4>
+            <p>Created a unique cross-disciplinary project combining original sketches with live music — exhibited at a local gallery.</p>
+          </div>
+        </div>
+        <div class="tl-item right">
+          <div class="tl-dot"><i class="fas fa-star"></i></div>
+          <div class="tl-card">
+            <span class="tl-year">2022</span>
+            <h4>Online Presence Launch</h4>
+            <p>Started sharing music covers and sketch videos online, quickly building a dedicated community of supporters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <p class="contact-intro">Feel free to reach out for collaborations or creative projects.</p>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <span class="ci-label">Email</span>
+              <a href="mailto:isabeve@example.com" class="ci-value">isabeve@example.com</a>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <span class="ci-label">Location</span>
+              <span class="ci-value">Kazakhstan</span>
+            </div>
+          </div>
+          <div class="social-row">
+            <a href="#" class="soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="soc-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="soc-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="soc-btn" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cfName">Your Name</label>
+              <input type="text" id="cfName" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="cfEmail">Your Email</label>
+              <input type="email" id="cfEmail" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cfSubject">Subject</label>
+            <input type="text" id="cfSubject" placeholder="Collaboration Inquiry" />
+          </div>
+          <div class="form-group">
+            <label for="cfMsg">Message</label>
+            <textarea id="cfMsg" rows="5" placeholder="Tell me about your idea..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-w">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i> Thank you! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">IK</div>
+        <p>Where music meets art — a creative soul from Kazakhstan.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#music">Music</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-quote">
+        <blockquote>"Art and music are two languages of the same heart."</blockquote>
+        <cite>— Isabeve Korkama</cite>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Isabeve Korkama. All rights reserved. Crafted with <i class="fas fa-heart" style="color:var(--orange)"></i> in Kazakhstan.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
