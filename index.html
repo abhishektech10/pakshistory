@@ -3,42 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pakshi Tea &amp; Gossip</title>
-<meta name="description" content="Real stories, real memories. Pakshi shares college life, friendships, mysteries and emotional moments, one part at a time.">
+<title>Pakhi Tea &amp; Gossip</title>
+<meta name="description" content="A place where real-life stories and experiences are shared, one part at a time.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="light" data-lang="en">
+<body data-theme="dark" data-story-lang="en">
 
-<!-- Floating tea leaf particles for hero atmosphere -->
-<div class="steam-particles" aria-hidden="true">
-  <span></span><span></span><span></span><span></span><span></span>
-</div>
+<!-- ambient floating particles -->
+<div class="ambient" id="ambient" aria-hidden="true"></div>
 
-<!-- NAVBAR -->
-<header class="navbar" id="navbar">
+<!-- reading progress (fills while inside a part page) -->
+<div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- custom cursor glow (desktop only) -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- NAVIGATION -->
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <button class="brand" data-nav="home">
-      <span class="brand-cup">☕</span>
-      <span class="brand-text">Pakshi <em>Tea &amp; Gossip</em></span>
-    </button>
+    <a href="#/" class="nav-brand" data-route-link>
+      <span class="brand-mark">☕</span>
+      <span class="brand-text">Pakhi <em>Tea &amp; Gossip</em></span>
+    </a>
 
     <nav class="nav-links" id="navLinks">
-      <button data-nav="home" data-i18n="nav_home">Home</button>
-      <button data-nav="stories" data-i18n="nav_stories">Stories</button>
-      <button data-nav="categories" data-i18n="nav_categories">Categories</button>
-      <button data-nav="gallery" data-i18n="nav_gallery">Gallery</button>
-      <button data-nav="about" data-i18n="nav_about">About</button>
-      <button data-nav="contact" data-i18n="nav_contact">Contact</button>
+      <a href="#/" data-route-link>Home</a>
+      <a href="#/story" data-route-link>Story</a>
+      <a href="#/new-story" data-route-link>New Story</a>
+      <a href="#/about" data-route-link>About the Author</a>
+      <a href="#/contact" data-route-link>Contact</a>
     </nav>
 
     <div class="nav-tools">
-      <button class="tool-btn" id="langToggle" title="Language" aria-label="Toggle language">
-        <span aria-hidden="true">🌐</span><span id="langLabel">EN</span>
+      <button class="lang-pill" id="langPill" aria-label="Switch story language">
+        <span class="lang-pill-thumb" id="langPillThumb"></span>
+        <span class="lang-pill-opt" data-lang="en">EN</span>
+        <span class="lang-pill-opt" data-lang="hi">हिं</span>
       </button>
-      <button class="tool-btn" id="themeToggle" title="Dark mode" aria-label="Toggle dark mode">
-        <span id="themeIcon" aria-hidden="true">🌙</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span id="themeIcon">☀️</span>
       </button>
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -47,200 +52,249 @@
 
 <main id="mainContent">
 
-<!-- HERO / LANDING -->
-<section class="page-section hero" id="page-home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="eyebrow" data-i18n="hero_eyebrow">a warm cup, an honest story</p>
-    <h1 data-i18n="hero_title">Welcome to Pakshi Tea &amp; Gossip ☕</h1>
-    <p class="hero-subtitle" data-i18n="hero_subtitle">A place where memories, experiences, college life, mysteries, friendships and unforgettable moments are shared.</p>
-    <div class="hero-buttons">
-      <button class="btn btn-primary" data-nav="stories" data-i18n="hero_btn_read">📖 Read Stories</button>
-      <button class="btn btn-outline" id="heroAddStory" data-i18n="hero_btn_add">➕ Add Story</button>
-    </div>
-  </div>
-  <button class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
-    <span></span>
-  </button>
-</section>
+  <!-- ================= HOME ================= -->
+  <section class="page hero-page" id="page-home">
+    <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
 
-<!-- STORIES -->
-<section class="page-section" id="page-stories">
-  <div class="container">
-    <h2 class="section-title" data-i18n="stories_title">Stories</h2>
+    <div class="container hero-inner">
+      <p class="eyebrow anim-in" style="--d:0">a warm cup, an honest story</p>
+      <h1 class="hero-title" id="heroTitle">Welcome to Pakhi Tea &amp; Gossip ☕</h1>
+      <p class="subtitle anim-in" style="--d:5">A place where real-life stories and experiences are shared — one part at a time.</p>
 
-    <div class="controls-bar">
-      <div class="search-wrap">
-        <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search by title, author, category or keyword">
-        <span class="search-icon" aria-hidden="true">🔍</span>
+      <div class="hero-actions anim-in" style="--d:6">
+        <a href="#/story" class="btn btn-primary" data-route-link>Start Reading</a>
+        <a href="#/new-story" class="btn btn-outline" data-route-link>Share Your Story</a>
       </div>
-      <div class="chip-row" id="categoryChips"></div>
-    </div>
 
-    <div class="story-grid" id="storyGrid"></div>
-    <p class="empty-state" id="storyEmpty" hidden data-i18n="empty_stories">No stories match your search yet. Try a different word or category.</p>
-  </div>
-</section>
-
-<!-- CATEGORIES -->
-<section class="page-section" id="page-categories">
-  <div class="container">
-    <h2 class="section-title" data-i18n="categories_title">Categories</h2>
-    <p class="section-sub" data-i18n="categories_sub">Pick a mood. Every category holds a different kind of memory.</p>
-    <div class="category-grid" id="categoryGrid"></div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="page-section" id="page-gallery">
-  <div class="container">
-    <h2 class="section-title" data-i18n="gallery_title">Gallery</h2>
-    <p class="section-sub" data-i18n="gallery_sub">Every cover and every part, side by side.</p>
-    <div class="gallery-grid" id="galleryGrid"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="page-section" id="page-about">
-  <div class="container container-narrow">
-    <h2 class="section-title" data-i18n="about_title">About Pakshi</h2>
-    <div class="about-card">
-      <p data-i18n="about_body">Pakshi shares her personal experiences, memories, college life, friendships, emotional moments and mysterious incidents through stories. Every story is presented exactly as she remembers it, allowing readers to interpret events in their own way.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="page-section" id="page-contact">
-  <div class="container container-narrow">
-    <h2 class="section-title" data-i18n="contact_title">Contact</h2>
-    <p class="section-sub" data-i18n="contact_sub">Have a story of your own, or something to say about one of Pakshi's? Send a note.</p>
-    <form class="contact-form" id="contactForm">
-      <label data-i18n="contact_name">Your name
-        <input type="text" name="name" required>
-      </label>
-      <label data-i18n="contact_email">Your email
-        <input type="email" name="email" required>
-      </label>
-      <label data-i18n="contact_message">Message
-        <textarea name="message" rows="5" required></textarea>
-      </label>
-      <button type="submit" class="btn btn-primary" data-i18n="contact_send">Send message</button>
-    </form>
-  </div>
-</section>
-
-<!-- STORY READER -->
-<section class="page-section" id="page-reader">
-  <div class="reader-progress"><div class="reader-progress-fill" id="readerProgress"></div></div>
-  <div class="container container-narrow reader-wrap">
-    <button class="back-link" id="readerBack" data-i18n="reader_back">&larr; Back to stories</button>
-
-    <div class="reader-head">
-      <img class="reader-cover" id="readerCover" alt="">
-      <div class="reader-meta">
-        <span class="badge" id="readerCategory"></span>
-        <h1 id="readerTitle"></h1>
-        <div class="meta-row">
-          <span id="readerAuthor"></span>
-          <span>&middot;</span>
-          <span id="readerDate"></span>
-          <span>&middot;</span>
-          <span id="readerTime"></span>
-        </div>
-        <p id="readerDescription"></p>
-        <div class="reader-actions">
-          <button id="likeBtn" class="icon-btn">🤍 <span id="likeCount">0</span></button>
-          <button id="bookmarkBtn" class="icon-btn">🔖 <span id="bookmarkLabel" data-i18n="bookmark_save">Save</span></button>
-          <button id="shareBtn" class="icon-btn">🔗 <span data-i18n="share">Share</span></button>
+      <div class="tag-marquee anim-in" style="--d:7" aria-hidden="true">
+        <div class="tag-track">
+          <span>College Life</span><span>•</span><span>Mystery</span><span>•</span>
+          <span>Friendship</span><span>•</span><span>True Story</span><span>•</span>
+          <span>College Life</span><span>•</span><span>Mystery</span><span>•</span>
+          <span>Friendship</span><span>•</span><span>True Story</span><span>•</span>
         </div>
       </div>
     </div>
 
-    <div class="part-nav">
-      <span id="partIndicator"></span>
+    <div class="intro-block container reveal">
+      <div class="intro-card">
+        <span class="intro-kicker">the introduction</span>
+        <p>Pakhi moved into a new PG last September expecting a quiet room and an ordinary college year. What actually followed — new roommates, a strained friendship, and a string of things neither of them could explain — became a five‑part story she's telling exactly as she remembers it, so you can read it, and decide for yourself, one part at a time.</p>
+        <a href="#/story" class="intro-link" data-route-link>Read the story <span aria-hidden="true">→</span></a>
+      </div>
     </div>
+  </section>
 
-    <article class="part-body" id="partBody">
-      <img class="part-image" id="partImage" alt="">
-      <div class="part-text" id="partText"></div>
-    </article>
+  <!-- ================= STORY INDEX ================= -->
+  <section class="page" id="page-story">
+    <div class="container">
+      <p class="eyebrow reveal">a true story, told in five parts</p>
+      <h2 class="page-title reveal">The Story</h2>
+      <p class="section-meta reveal">By Pakhi &middot; 5 parts &middot; read in order or jump to any part</p>
 
-    <div class="part-controls">
-      <button class="btn btn-outline" id="prevPartBtn" data-i18n="reader_prev">&larr; Previous Part</button>
-      <button class="btn btn-primary" id="nextPartBtn" data-i18n="reader_next">Next Part &rarr;</button>
+      <div class="story-intro card reveal">
+        <p class="lang-en">A new PG, two new roommates, and a friendship that quietly falls apart — followed by a string of things neither Pakhi nor her roommate K could ever quite explain. Told exactly as she remembers it.</p>
+        <p class="lang-hi">एक नया PG, दो नई roommates, और एक दोस्ती जो चुपचाप टूटती चली गई — इसके बाद कुछ ऐसी घटनाएँ जिन्हें न Pakhi और न ही उसकी roommate K कभी ठीक से समझा पाईं। ठीक वैसे ही बताई गई है, जैसे उन्हें याद है।</p>
+      </div>
+
+      <div class="part-grid">
+        <a href="#/story/part-1" class="part-card reveal" data-route-link style="--d:0">
+          <span class="part-num">01</span>
+          <h3>Part 1</h3>
+          <p class="lang-en">Moving into the PG, new roommates, and the friendship that starts to crack.</p>
+          <p class="lang-hi">PG में शिफ्ट होना, नई roommates, और दोस्ती में आती दरार।</p>
+          <span class="part-cta">Read part <span aria-hidden="true">→</span></span>
+        </a>
+        <a href="#/story/part-2" class="part-card reveal" data-route-link style="--d:1">
+          <span class="part-num">02</span>
+          <h3>Part 2</h3>
+          <p class="lang-en">S leaves for a wedding — and the strange things Pakhi and K start noticing.</p>
+          <p class="lang-hi">S शादी में चली जाती है — और वे अजीब बातें जो Pakhi और K को नज़र आने लगती हैं।</p>
+          <span class="part-cta">Read part <span aria-hidden="true">→</span></span>
+        </a>
+        <a href="#/story/part-3" class="part-card reveal" data-route-link style="--d:2">
+          <span class="part-num">03</span>
+          <h3>Part 3</h3>
+          <p class="lang-en">A senior's warning, terrace fires, and something that vanishes overnight.</p>
+          <p class="lang-hi">सीनियर की चेतावनी, छत पर जलती आग, और रातभर में गायब हो जाने वाली एक चीज़।</p>
+          <span class="part-cta">Read part <span aria-hidden="true">→</span></span>
+        </a>
+        <a href="#/story/part-4" class="part-card reveal" data-route-link style="--d:3">
+          <span class="part-num">04</span>
+          <h3>Part 4</h3>
+          <p class="lang-en">A discovery on her own bed, and a senior's unsettling theory.</p>
+          <p class="lang-hi">अपने ही बिस्तर पर एक खौफनाक खोज, और सीनियर की परेशान कर देने वाली theory।</p>
+          <span class="part-cta">Read part <span aria-hidden="true">→</span></span>
+        </a>
+        <a href="#/story/part-5" class="part-card reveal" data-route-link style="--d:4">
+          <span class="part-num">05</span>
+          <h3>Part 5 <small>(Final)</small></h3>
+          <p class="lang-en">The longest night — and how it finally, quietly, ends.</p>
+          <p class="lang-hi">सबसे लंबी रात — और आखिरकार वह चुपचाप कैसे खत्म होती है।</p>
+          <span class="part-cta">Read part <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ================= PART 1 ================= -->
+  <section class="page part-page" id="page-part-1" data-part="1" data-total="5">
+    <div class="part-ghost-num" aria-hidden="true">01</div>
+    <div class="container part-container">
+      <a href="#/story" class="back-link reveal" data-route-link>&larr; <span class="lang-en">Back to Story</span><span class="lang-hi">कहानी पर वापस</span></a>
+      <p class="part-label reveal"><span class="lang-en">Part 1 of 5</span><span class="lang-hi">भाग 1 / 5</span></p>
+      <h1 class="part-title reveal"><span class="lang-en">Moving In</span><span class="lang-hi">शिफ्टिंग</span></h1>
+
+      <article class="part-body reveal">
+        <p class="lang-en">Last September, I moved into a PG near my college. It was my first day of both college and PG life. The rooms were nice, the environment felt welcoming, and I quickly settled in. My room was a three-seater, but for the first four months, I lived there alone because the other two beds were vacant. I enjoyed the peace and privacy and got used to having the room to myself. In December, two girls moved into the room next to mine. Let's call them K and S. K was cheerful and outgoing, while S was quieter and more reserved. They seemed to be close friends. A month later, our landlord asked them to shift into my room since I had two empty beds. By January 2026, all three of us were sharing the same room. At first, everything was great. We got along well, and living together felt easy. Around New Year's, K started dating someone, and she seemed really happy. Over time, however, I noticed tension growing between K and S.S began sharing negative opinions about K with different people in college and at the PG. One day, she shared some personal concerns about K with me. I didn't want to get involved, so I mostly listened and stayed neutral. Later, I learned that similar conversations had been happening with one of our seniors. The senior and I felt K should know what was being said, so we informed her. K was understandably hurt. After she confronted S, their friendship became strained. Since all three of us lived in the same room, the atmosphere quickly turned awkward and uncomfortable. What had once felt like a peaceful room suddenly felt very different. And that was only the beginning...</p>
+        <p class="lang-hi">पिछले सितंबर मैं अपने कॉलेज के पास एक PG में शिफ्ट हुई। यह मेरे कॉलेज और PG जीवन, दोनों का पहला दिन था। कमरे अच्छे थे, माहौल बहुत welcoming लग रहा था, और मैं जल्दी ही वहाँ सेट हो गई। मेरा कमरा तीन सीटर था, लेकिन शुरुआती चार महीनों तक मैं अकेली रही क्योंकि बाकी दो बेड खाली थे। मुझे उस अकेलेपन और privacy की आदत हो गई थी और मुझे यह सुकून पसंद भी था। दिसंबर में, दो लड़कियाँ मेरे बगल वाले कमरे में शिफ्ट हुईं। उन्हें हम K और S बुलाते हैं। K खुशमिज़ाज और मिलनसार थी, जबकि S थोड़ी शांत और reserved थी। दोनों काफी अच्छी दोस्त लगती थीं। एक महीने बाद, हमारे landlord ने उन्हें मेरे कमरे में शिफ्ट होने को कहा क्योंकि मेरे पास दो खाली बेड थे। जनवरी 2026 तक हम तीनों एक ही कमरे में साथ रहने लगीं। शुरुआत में सब कुछ बहुत अच्छा था। हम अच्छे से घुल-मिल गए थे और साथ रहना आसान लग रहा था। नए साल के आसपास, K किसी से डेट करने लगी और वह बहुत खुश लग रही थी। लेकिन धीरे-धीरे मुझे K और S के बीच तनाव महसूस होने लगा। S कॉलेज और PG में अलग-अलग लोगों से K के बारे में नकारात्मक बातें करने लगी थी। एक दिन उसने मुझसे भी K को लेकर कुछ personal बातें शेयर कीं। मैं इसमें पड़ना नहीं चाहती थी, इसलिए ज़्यादातर सुनती रही और तटस्थ बनी रही। बाद में पता चला कि ऐसी ही बातें हमारी एक सीनियर से भी होती रही थीं। सीनियर और मुझे लगा कि K को यह जानना चाहिए कि उसके बारे में क्या कहा जा रहा है, तो हमने उसे बता दिया। K को यह जानकर काफी दुख हुआ। S से सामना करने के बाद उन दोनों की दोस्ती में दरार आ गई। चूँकि हम तीनों एक ही कमरे में रहती थीं, माहौल जल्द ही अजीब और असहज हो गया। जो कमरा कभी शांत हुआ करता था, वह अचानक बिल्कुल अलग महसूस होने लगा। और यह तो बस शुरुआत थी...</p>
+      </article>
+
+      <div class="part-nav reveal">
+        <span class="part-nav-disabled"><span class="lang-en">&larr; Previous</span><span class="lang-hi">&larr; पिछला</span></span>
+        <a href="#/story/part-2" class="btn btn-primary" data-route-link><span class="lang-en">Part 2</span><span class="lang-hi">भाग 2</span> &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PART 2 ================= -->
+  <section class="page part-page" id="page-part-2" data-part="2" data-total="5">
+    <div class="part-ghost-num" aria-hidden="true">02</div>
+    <div class="container part-container">
+      <a href="#/story" class="back-link reveal" data-route-link>&larr; <span class="lang-en">Back to Story</span><span class="lang-hi">कहानी पर वापस</span></a>
+      <p class="part-label reveal"><span class="lang-en">Part 2 of 5</span><span class="lang-hi">भाग 2 / 5</span></p>
+      <h1 class="part-title reveal"><span class="lang-en">The Small Things</span><span class="lang-hi">छोटी-छोटी बातें</span></h1>
+
+      <article class="part-body reveal">
+        <p class="lang-en">The vibe in the room had become quite awkward by then. K and S had almost stopped talking to each other. By the end of January, S went home for a family wedding. Not gonna lie, it was such a relief for me and K once she left 😭. We started talking normally again, joking around, and the room felt a lot more relaxed 😂. But after she left, the two of us started talking about a lot of strange things from the past few months. First of all, whenever S was in the room, both of us found it really hard to focus on studying. Second, late at night we sometimes felt like she was slowly murmuring something in her sleep. And here's another strange thing — whenever S fell asleep in the middle of a study session, after a while both of us would suddenly start feeling sleepy too, even when we weren't tired at all 😭. S also had a habit of repeatedly offering us food. At the time it seemed normal, but later we noticed that whenever she slept at a specific time, both of us would often wake up around that exact same time at night, for no reason. There were also some strange incidents with the bathroom. Since it was an attached bathroom, we would sometimes see things in there that felt unusual to us, and we couldn't figure out how they had gotten there. A few times it even felt like something in the bathroom didn't match what we'd actually been using recently. And the creepiest part? Late at night, we would often hear sounds from above, like something heavy being dragged or moved. The problem was that our room was on the top floor of the PG 💀. Which meant there technically shouldn't have been any occupied room above us at all. When me and K sat down and discussed all of these things together, we realized just how many strange incidents had actually happened. Maybe some of it had a logical explanation, but at the time, all of it felt pretty confusing and creepy to us.</p>
+        <p class="lang-hi">अब तक कमरे का माहौल काफी अजीब हो चुका था। K और S ने लगभग एक-दूसरे से बात करना ही बंद कर दिया था। जनवरी के अंत तक S एक फैमिली शादी में शामिल होने घर चली गई। सच कहूँ तो, उसके जाते ही मुझे और K को बहुत राहत महसूस हुई 😭। हम फिर से normal तरीके से बातें करने लगे, मज़ाक करने लगे, और कमरे का माहौल भी काफी हल्का हो गया 😂। लेकिन उसके जाने के बाद हम दोनों ने पिछले कुछ महीनों की कई अजीब बातों पर चर्चा करनी शुरू की। सबसे पहली बात, जब भी S कमरे में होती थी, हमें पढ़ाई पर ध्यान लगाना बहुत मुश्किल लगता था। दूसरी बात, कभी-कभी देर रात हमें लगता था कि वह नींद में धीरे-धीरे कुछ बड़बड़ा रही है। और एक और अजीब बात — जब भी study session के बीच में S सो जाती थी, कुछ देर बाद हमें भी अचानक नींद आने लगती थी, भले ही हम बिल्कुल थके हुए न हों 😭। S की आदत भी थी हमें बार-बार खाना offer करने की। उस वक्त यह सामान्य लगता था, लेकिन बाद में हमने notice किया कि जब भी वह किसी खास समय पर सोती थी, मैं और K भी अक्सर रात में लगभग उसी समय बिना किसी वजह के जाग जाते थे। बाथरूम को लेकर भी कुछ अजीब घटनाएँ हुईं। चूँकि हमारा attached बाथरूम था, कभी-कभी हमें वहाँ ऐसी चीज़ें दिखती थीं जो असामान्य लगती थीं, और हमें समझ नहीं आता था कि वे वहाँ कैसे पहुँचीं। कुछ बार तो ऐसा भी लगा कि बाथरूम में कुछ ऐसा है जो हमारे हाल के इस्तेमाल से मेल ही नहीं खाता। और सबसे डरावनी बात? देर रात हमें कई बार ऊपर से ऐसी आवाज़ें सुनाई देती थीं जैसे कोई भारी चीज़ घसीटी या हिलाई जा रही हो। समस्या यह थी कि हमारा कमरा PG की सबसे ऊपरी मंज़िल पर था 💀। यानी technically हमारे ऊपर कोई कमरा होना ही नहीं चाहिए था। जब मैंने और K ने ये सारी बातें साथ बैठकर discuss कीं, तब एहसास हुआ कि असल में कितनी अजीब घटनाएँ हो चुकी थीं। हो सकता है इनमें से कुछ का कोई logical कारण हो, लेकिन उस वक्त यह सब हमें बेहद उलझा हुआ और डरावना लग रहा था।</p>
+      </article>
+
+      <div class="part-nav reveal">
+        <a href="#/story/part-1" class="btn btn-outline" data-route-link>&larr; <span class="lang-en">Part 1</span><span class="lang-hi">भाग 1</span></a>
+        <a href="#/story/part-3" class="btn btn-primary" data-route-link><span class="lang-en">Part 3</span><span class="lang-hi">भाग 3</span> &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PART 3 ================= -->
+  <section class="page part-page" id="page-part-3" data-part="3" data-total="5">
+    <div class="part-ghost-num" aria-hidden="true">03</div>
+    <div class="container part-container">
+      <a href="#/story" class="back-link reveal" data-route-link>&larr; <span class="lang-en">Back to Story</span><span class="lang-hi">कहानी पर वापस</span></a>
+      <p class="part-label reveal"><span class="lang-en">Part 3 of 5</span><span class="lang-hi">भाग 3 / 5</span></p>
+      <h1 class="part-title reveal"><span class="lang-en">The Terrace</span><span class="lang-hi">छत</span></h1>
+
+      <article class="part-body reveal">
+        <p class="lang-en">A few days later, me and K shared all of these strange experiences with one of our seniors who lived in the same PG and on the same floor. What she told us made us even more curious. According to her, she had occasionally seen S burning certain items near the edge of our terrace late in the evening. At first, we didn't know what to make of it, but it immediately reminded us of something we had noticed earlier. Back in Part 1, I mentioned that both K and S were in relationships. While K's relationship seemed relatively stable, S was going through a difficult phase in hers. Around the same time, K also started noticing that her own relationship had become unusually stressful, with frequent arguments and misunderstandings. When our senior mentioned the terrace incidents, me and K suddenly remembered something else. Near the exact same corner of the terrace, we had once seen what appeared to be the remains of a large dead animal or bird. It was in such a condition that neither of us could identify what it actually was. The memory bothered us enough that we immediately rushed to the terrace to check whether it was still there. What happened next genuinely shocked us. Earlier that very day, we had both seen it in that corner. But when we reached the terrace that night, it was completely gone. There was no sign of it at all. At that point, with all the unusual events we had experienced over the past few months, our minds started connecting different incidents together. We couldn't explain what was happening, but the mystery surrounding the situation only seemed to grow deeper.</p>
+        <p class="lang-hi">कुछ दिनों बाद, मैंने और K ने ये सारी अजीब घटनाएँ अपनी एक सीनियर के साथ शेयर कीं जो उसी PG में और उसी फ्लोर पर रहती थी। उसने जो बताया, उसने हमें और भी उत्सुक कर दिया। उसके अनुसार, उसने कई बार S को शाम के समय हमारी छत के किनारे कुछ चीज़ें जलाते हुए देखा था। शुरुआत में हमें समझ नहीं आया कि इसका क्या मतलब निकालें, लेकिन इसने हमें तुरंत कुछ याद दिला दिया जो हमने पहले नोटिस किया था। Part 1 में मैंने बताया था कि K और S दोनों किसी रिश्ते में थीं। जहाँ K का रिश्ता अपेक्षाकृत स्थिर लग रहा था, वहीं S अपने रिश्ते में एक मुश्किल दौर से गुज़र रही थी। लगभग उसी समय, K को भी महसूस होने लगा था कि उसका अपना रिश्ता असामान्य रूप से तनावपूर्ण हो गया है, बार-बार झगड़े और गलतफहमियाँ होने लगी थीं। जब हमारी सीनियर ने छत की उन घटनाओं का ज़िक्र किया, तो मुझे और K को अचानक कुछ और भी याद आ गया। ठीक उसी कोने में, हमने पहले किसी बड़े मरे हुए जानवर या पक्षी के अवशेष जैसा कुछ देखा था। वह ऐसी हालत में था कि हम दोनों में से कोई भी यह नहीं पहचान पाया कि वह असल में क्या था। यह याद इतनी परेशान करने वाली थी कि हम तुरंत छत पर यह देखने गए कि वह चीज़ अब भी वहाँ है या नहीं। जो हुआ उसने हमें सच में हैरान कर दिया। उसी दिन पहले हमने उसे उस कोने में देखा था। लेकिन जब हम उस रात छत पर पहुँचे, तो वह पूरी तरह गायब था। उसका कोई निशान तक नहीं था। उस समय तक, पिछले कुछ महीनों में हुई सभी अजीब घटनाओं के साथ, हमारे दिमाग में अलग-अलग बातें आपस में जुड़ने लगीं। हम यह समझ नहीं पा रहे थे कि आखिर हो क्या रहा है, लेकिन इस पूरी स्थिति का रहस्य और गहरा होता जा रहा था।</p>
+      </article>
+
+      <div class="part-nav reveal">
+        <a href="#/story/part-2" class="btn btn-outline" data-route-link>&larr; <span class="lang-en">Part 2</span><span class="lang-hi">भाग 2</span></a>
+        <a href="#/story/part-4" class="btn btn-primary" data-route-link><span class="lang-en">Part 4</span><span class="lang-hi">भाग 4</span> &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PART 4 ================= -->
+  <section class="page part-page" id="page-part-4" data-part="4" data-total="5">
+    <div class="part-ghost-num" aria-hidden="true">04</div>
+    <div class="container part-container">
+      <a href="#/story" class="back-link reveal" data-route-link>&larr; <span class="lang-en">Back to Story</span><span class="lang-hi">कहानी पर वापस</span></a>
+      <p class="part-label reveal"><span class="lang-en">Part 4 of 5</span><span class="lang-hi">भाग 4 / 5</span></p>
+      <h1 class="part-title reveal"><span class="lang-en">The Bed</span><span class="lang-hi">बिस्तर</span></h1>
+
+      <article class="part-body reveal">
+        <p class="lang-en">That same night, after discovering that the mysterious object on the terrace had disappeared, I hurried back to my room hoping to calm myself down. Instead, I found something that made my heart sink. There were maggots on my bed. At first, I tried to find a logical explanation. Had I accidentally spilled food or a drink? Had K dropped something without noticing? But the more we thought about it, the less sense it seemed to make. Neither of us ate on the bed, and we couldn't remember anything being spilled there. After everything that had already happened, this felt like yet another strange event added to a growing list of unanswered questions. When our senior saw what had happened, she immediately took me and K to her room. There, she shared her own thoughts about the incidents we had been experiencing. According to her, all of the unusual events might be connected to practices or beliefs involving negative spiritual influences. At that point, me and K didn't know what to think. We had spent weeks witnessing things we couldn't explain, and fear was beginning to affect the way we interpreted every new incident. The possibility that someone might have been intentionally trying to harm us emotionally or spiritually terrified me. I especially worried that I had somehow become involved after telling K about things S had allegedly been saying behind her back. In my frightened state, I couldn't stop wondering whether that had made me a target of someone's anger. My thoughts raced faster and faster until I could barely process what was happening around me. I was overwhelmed. I was scared. And for a moment, my mind simply went blank.</p>
+        <p class="lang-hi">उसी रात, छत पर मौजूद उस रहस्यमयी चीज़ के गायब होने का पता चलने के बाद, मैं खुद को शांत करने की उम्मीद में जल्दी से अपने कमरे में वापस आई। लेकिन इसके बजाय, मुझे कुछ ऐसा मिला जिसने मेरा दिल बैठा दिया। मेरे बिस्तर पर कीड़े थे। शुरुआत में मैंने कोई logical वजह ढूँढने की कोशिश की। क्या मुझसे गलती से कुछ खाना या ड्रिंक गिर गया था? क्या K से कुछ बिना नोटिस किए गिरा था? लेकिन जितना हम इस बारे में सोचते, उतना ही यह बेतुका लगता। हम दोनों में से किसी ने भी बिस्तर पर खाना नहीं खाया था, और हमें याद नहीं आ रहा था कि वहाँ कुछ गिरा हो। पहले से हो चुकी इतनी सारी घटनाओं के बाद, यह भी बस एक और अजीब घटना जैसा लग रहा था, जो सवालों की एक लंबी सूची में जुड़ गई। जब हमारी सीनियर ने यह देखा, तो वह तुरंत मुझे और K को अपने कमरे में ले गई। वहाँ उसने हमारे साथ इन घटनाओं को लेकर अपने विचार साझा किए। उसके अनुसार, ये सारी असामान्य घटनाएँ negative spiritual प्रभावों से जुड़ी प्रथाओं या मान्यताओं से जुड़ी हो सकती थीं। उस पल मुझे और K को कुछ समझ नहीं आ रहा था कि क्या सोचें। हमने पिछले कई हफ्तों में ऐसी चीज़ें देखी थीं जिनकी हम व्याख्या नहीं कर पा रहे थे, और डर हमारे हर नए वाकये को समझने के तरीके को प्रभावित करने लगा था। यह संभावना कि कोई जानबूझकर हमें भावनात्मक या आध्यात्मिक रूप से नुकसान पहुँचाने की कोशिश कर रहा हो, मुझे बेहद डरा रही थी। मुझे खासतौर पर यह डर था कि S के बारे में जो बातें K को बताईं, उसके बाद कहीं मैं भी किसी की नाराज़गी का निशाना तो नहीं बन गई। मेरे विचार तेज़ी से दौड़ने लगे, यहाँ तक कि मैं यह समझ ही नहीं पा रही थी कि मेरे आसपास क्या हो रहा है। मैं overwhelmed थी। मैं डरी हुई थी। और एक पल के लिए, मेरा दिमाग बिल्कुल खाली हो गया।</p>
+      </article>
+
+      <div class="part-nav reveal">
+        <a href="#/story/part-3" class="btn btn-outline" data-route-link>&larr; <span class="lang-en">Part 3</span><span class="lang-hi">भाग 3</span></a>
+        <a href="#/story/part-5" class="btn btn-primary" data-route-link><span class="lang-en">Part 5</span><span class="lang-hi">भाग 5</span> &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PART 5 (FINAL) ================= -->
+  <section class="page part-page" id="page-part-5" data-part="5" data-total="5">
+    <div class="part-ghost-num" aria-hidden="true">05</div>
+    <div class="container part-container">
+      <a href="#/story" class="back-link reveal" data-route-link>&larr; <span class="lang-en">Back to Story</span><span class="lang-hi">कहानी पर वापस</span></a>
+      <p class="part-label reveal"><span class="lang-en">Part 5 of 5 &middot; Final Part</span><span class="lang-hi">भाग 5 / 5 &middot; अंतिम भाग</span></p>
+      <h1 class="part-title reveal"><span class="lang-en">The Longest Night</span><span class="lang-hi">सबसे लंबी रात</span></h1>
+
+      <article class="part-body reveal">
+        <p class="lang-en">While I was sitting in my senior's room, I started hearing voices outside the door. At first, I thought I was imagining it. But the voices felt real, as if a crowd was standing outside, ready to burst into the room. I was terrified. Thankfully, my senior stayed calm. She was very religious and began reciting prayers and mantras to help me calm down. I tried focusing on her voice, but everything around me started to blur. My vision darkened, I couldn't stop crying, and it felt difficult to breathe. The voices continued. I thought I could hear a man singing, a woman shouting, and a child crying. Whether it was fear, stress, exhaustion, or something else, I couldn't tell. My senior kept praying for nearly an hour until I slowly felt calmer. But the night wasn't over. Around 3 a.m., we suddenly heard a loud snapping sound from the water tap in the room. The noise startled both of us. My senior started praying louder, while I sat there trying to stay calm. At the same time, I thought I saw brief flashes of light and moving shadows out of the corner of my eye. Fear was taking over, so I closed my eyes and started repeating prayers myself. The more I focused on the prayers, the calmer I became. Little by little, the voices and fear seemed to fade away. When I finally opened my eyes again, it was already 6 a.m. The sun was rising. After what felt like the longest night of my life, the morning light brought an overwhelming sense of relief. My senior and I stepped outside and went to the terrace. Standing there in the fresh air, everything felt peaceful again. I hugged her tightly and thanked her for staying with me through the night. I was so relieved that I cried. And that's how the most frightening night of my life finally came to an end. Since then, nothing unusual has happened again and I hope it stays that way.</p>
+        <p class="lang-hi">मैं अपनी सीनियर के कमरे में बैठी थी, तभी मुझे दरवाज़े के बाहर आवाज़ें सुनाई देने लगीं। शुरुआत में मुझे लगा कि मैं सिर्फ कल्पना कर रही हूँ। लेकिन वे आवाज़ें बिल्कुल असली महसूस हो रही थीं, जैसे बाहर एक भीड़ खड़ी हो, कमरे में घुसने को तैयार। मैं बुरी तरह डरी हुई थी। शुक्र है, मेरी सीनियर शांत बनी रही। वह काफी धार्मिक थी और मुझे शांत करने के लिए प्रार्थनाएँ और मंत्र पढ़ने लगी। मैंने उसकी आवाज़ पर ध्यान केंद्रित करने की कोशिश की, लेकिन मेरे आसपास सब कुछ धुंधला होने लगा। मेरी नज़र धुंधली पड़ने लगी, मैं रोना बंद नहीं कर पा रही थी, और साँस लेना मुश्किल हो रहा था। आवाज़ें लगातार आती रहीं। मुझे लगा जैसे मैं एक आदमी को गाते हुए, एक औरत को चिल्लाते हुए, और एक बच्चे को रोते हुए सुन पा रही हूँ। यह डर था, तनाव था, थकान थी, या कुछ और — मैं बता नहीं सकती। मेरी सीनियर लगभग एक घंटे तक प्रार्थना करती रही, जब तक मुझे धीरे-धीरे थोड़ी शांति महसूस नहीं होने लगी। लेकिन रात अभी खत्म नहीं हुई थी। रात करीब 3 बजे, हमें अचानक कमरे के नल से एक तेज़ चटकने जैसी आवाज़ सुनाई दी। इस आवाज़ ने हम दोनों को चौंका दिया। मेरी सीनियर और ज़ोर से प्रार्थना करने लगी, जबकि मैं वहीं बैठे शांत रहने की कोशिश कर रही थी। उसी दौरान, मुझे लगा जैसे मैंने अपनी आँखों के कोने से रोशनी की हल्की चमक और हिलते हुए साये देखे। डर हावी हो रहा था, इसलिए मैंने अपनी आँखें बंद कर लीं और खुद भी प्रार्थनाएँ दोहराने लगी। जितना ज़्यादा मैं प्रार्थनाओं पर ध्यान लगाती गई, उतना ही शांत होती गई। धीरे-धीरे, वे आवाज़ें और डर कम होते गए। जब मैंने आखिरकार अपनी आँखें खोलीं, तब तक सुबह के 6 बज चुके थे। सूरज निकल रहा था। अपनी ज़िंदगी की सबसे लंबी रात जैसा महसूस होने के बाद, सुबह की रोशनी ने राहत का एक जबरदस्त एहसास दिया। मैं और मेरी सीनियर बाहर निकलकर छत पर गए। वहाँ खुली हवा में खड़े होकर, सब कुछ फिर से शांत महसूस हो रहा था। मैंने उसे कसकर गले लगाया और रातभर मेरे साथ रहने के लिए उसका शुक्रिया अदा किया। मुझे इतनी राहत मिली कि मैं रो पड़ी। और इस तरह मेरी ज़िंदगी की सबसे डरावनी रात आखिरकार खत्म हुई। तब से अब तक दोबारा कुछ भी असामान्य नहीं हुआ है, और मुझे उम्मीद है कि आगे भी ऐसा ही रहेगा।</p>
+      </article>
+
+      <p class="the-end reveal"><span class="lang-en">The End</span><span class="lang-hi">समाप्त</span></p>
+
+      <div class="part-nav reveal">
+        <a href="#/story/part-4" class="btn btn-outline" data-route-link>&larr; <span class="lang-en">Part 4</span><span class="lang-hi">भाग 4</span></a>
+        <a href="#/story" class="btn btn-primary" data-route-link><span class="lang-en">All Parts</span><span class="lang-hi">सभी भाग</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEW STORY ================= -->
+  <section class="page" id="page-new-story">
+    <div class="container">
+      <p class="eyebrow reveal">your turn</p>
+      <h2 class="page-title reveal">New Story</h2>
+      <p class="section-meta reveal">Share something you've lived through.</p>
+
+      <form id="storyForm" class="story-form card reveal">
+        <label for="fieldTitle">Story Title
+          <input type="text" id="fieldTitle" name="title" placeholder="Give your story a name" required>
+        </label>
+        <label for="fieldAuthor">Author Name
+          <input type="text" id="fieldAuthor" name="author" placeholder="Your name" required>
+        </label>
+        <label for="fieldContent">Story Content
+          <textarea id="fieldContent" name="content" rows="8" placeholder="Write your story here..." required></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cancelStoryBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Story</button>
+        </div>
+        <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+
+      <div id="publishedStories" class="published-stories"></div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="page" id="page-about">
+    <div class="container container-narrow">
+      <p class="eyebrow reveal">the author</p>
+      <h2 class="page-title reveal">About the Author</h2>
+      <div class="card reveal">
+        <p>Pakhi is the author of this fantastic story and shares personal stories and real-life experiences through this platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="page" id="page-contact">
+    <div class="container container-narrow">
+      <p class="eyebrow reveal">say hello</p>
+      <h2 class="page-title reveal">Contact</h2>
+      <div class="card reveal">
+        <p><strong>Author:</strong> Pakhi</p>
+        <p><strong>Email:</strong> <a href="mailto:example@email.com">example@email.com</a></p>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-<!-- FLOATING ADD STORY BUTTON -->
-<button class="fab" id="fabAddStory" data-i18n-title="add_story" title="Add Story">➕</button>
-
-<!-- ADD / EDIT STORY MODAL -->
-<div class="modal-overlay" id="editorOverlay" hidden>
-  <div class="modal editor-modal">
-    <button class="modal-close" id="editorClose" aria-label="Close">&times;</button>
-    <h2 data-i18n="editor_title">Write a new story</h2>
-
-    <div class="editor-grid">
-      <label data-i18n="editor_story_title">Story title
-        <input type="text" id="fieldTitle" placeholder="Give your story a name">
-      </label>
-      <label data-i18n="editor_author">Author name
-        <input type="text" id="fieldAuthor" value="Pakshi">
-      </label>
-      <label data-i18n="editor_category">Category
-        <select id="fieldCategory"></select>
-      </label>
-      <label data-i18n="editor_cover">Cover image
-        <input type="file" id="fieldCoverUpload" accept="image/*">
-      </label>
-      <button type="button" class="btn btn-outline" id="fieldCoverAI" data-i18n="editor_ai_image">✨ Generate cover art</button>
-      <label class="full" data-i18n="editor_description">Short description
-        <textarea id="fieldDescription" rows="2" placeholder="One or two lines that pull a reader in"></textarea>
-      </label>
-    </div>
-
-    <div class="parts-editor" id="partsEditor"></div>
-    <button type="button" class="btn btn-outline" id="addPartBtn" data-i18n="editor_add_part">➕ Add New Part</button>
-
-    <div class="editor-footer">
-      <button type="button" class="btn btn-ghost" id="previewStoryBtn" data-i18n="editor_preview">Preview Story</button>
-      <button type="button" class="btn btn-outline" id="saveDraftBtn" data-i18n="editor_draft">Save Draft</button>
-      <button type="button" class="btn btn-primary" id="publishBtn" data-i18n="editor_publish">Publish Story</button>
-    </div>
-  </div>
-</div>
-
-<!-- IMAGE FULLSCREEN PREVIEW -->
-<div class="modal-overlay" id="imageOverlay" hidden>
-  <div class="modal image-modal">
-    <button class="modal-close" id="imageClose" aria-label="Close">&times;</button>
-    <img id="fullscreenImage" alt="">
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
 <footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-brand">☕ Pakshi Tea &amp; Gossip</p>
-    <p data-i18n="footer_made">Made with ❤️</p>
-    <div class="footer-tools">
-      <button id="footerLang" data-i18n="footer_lang">Switch to हिन्दी</button>
-      <span>&middot;</span>
-      <button id="footerTheme" data-i18n="footer_theme">Toggle dark mode</button>
-    </div>
-    <div class="footer-social">
-      <a href="#" aria-label="Instagram">📷</a>
-      <a href="#" aria-label="Twitter">🐦</a>
-      <a href="#" aria-label="Email">✉️</a>
-    </div>
-    <p class="footer-copy">&copy; <span id="footerYear"></span> Pakshi Tea &amp; Gossip. <span data-i18n="footer_rights">All stories belong to their author.</span></p>
-  </div>
+  <p>☕ Pakhi Tea &amp; Gossip &middot; <span id="footerYear"></span></p>
 </footer>
 
 <script src="script.js"></script>
